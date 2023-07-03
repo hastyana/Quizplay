@@ -100,18 +100,20 @@ class GuruController extends Controller
         }
     }
 
-    public function edit_quiz(string $id) {
-        $edit = Quiz::findOrFail($id);
-        return view('edit.quiz', ['edit' => $edit]);
+    public function edit_quiz($detail, $quizzes) {
+        $edit = Quiz::findOrFail($quizzes);
+        $link = Room::where('id', $detail)->firstOrFail();
+        return view('guru.quiz_edit', ['edit' => $edit, 'link' => $link]);
     }
 
-    public function update_quiz(Request $request, Room $id) {
-        $edit = Quiz::findOrFail($id);
+    public function update_quiz(Request $request, $detail, $quizzes) {
+        $edit = Quiz::findOrFail($quizzes);
+        $link = Room::where('id', $detail)->firstOrFail();
         
         $image = $request->file('image');
         if ($image) {
             $imageName = time().'.'.$request->image->getClientOriginalExtension();
-            $request->image->move('konsep', $imageName);
+            $request->image->move('quiz', $imageName);
         } else {
             $imageName = $edit->gambar;
         }
@@ -124,13 +126,12 @@ class GuruController extends Controller
             'd'      => $request->d,
             'key'      => $request->key,
         ]);
-        return redirect('/guru/room'.$id->id)->with('alert-success', 'Data berhasil diubah dan disimpan');
+        return redirect('/guru/room/'.$link->id)->with('alert-success', 'Data berhasil diubah dan disimpan');
     }
 
-    public function delete_quiz($id) {
-        $room = Room::findOrFail($id);
-        $delete = Quiz::where('id', $room->id)->delete();
-        return redirect('/guru/room'.$room)->with(['success' => 'Data Berhasil Dihapus!']);
+    public function delete_quiz($detail, $quizzes) {
+        $delete = Quiz::findOrFail($quizzes)->delete();
+        return redirect('/guru/room/'.$detail)->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
     public function stand($id) {

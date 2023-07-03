@@ -80,17 +80,17 @@
                         </div>
                         <div>
                             <p class="font-normal py-2 md:text-start text-white text-xs">
-                                *isi kunci jawaban dengan opsi, misal : a
+                                *isi kunci jawaban dengan opsi, misal : a/b/c/d
                             </p>
                             <label for="key" class="sr-only">Kunci Jawaban</label>
                             <input value="{{ old('key') }}" id="key" name="key" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white" placeholder="Kunci Jawaban">
                         </div>
                         <div>
-                            <p class="font-normal py-2 md:text-start text-red-600">
+                            <p class="font-normal text-xs py-2 md:text-start text-red-600">
                                 *opsional tidak harus dengan gambar
                             </p>
                             <input class="block w-full text-sm text-gray-600 bg-white rounded-lg cursor-pointer focus:outline-none py-1 px-1" id="image" name="image" type="file">
-                            <p class="font-normal py-2 md:text-start text-red-600">
+                            <p class="font-normal text-xs py-2 md:text-start text-red-600">
                                 *upload dengan format .jpg, .jpeg, .png, .gif, dan .svg <br>
                                 *max file size 2MB
                             </p>

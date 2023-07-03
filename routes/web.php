@@ -35,9 +35,9 @@ Route::group(['middleware' => ['auth']], function() {
         // Route::post('/guru/quiz_add/{id_room}', [GuruController::class, 'save_quiz']);
         Route::get('guru/room/{id}/quiz_add', [GuruController::class, 'add_quiz']);
         Route::post('guru/room/{id}/quiz_add', [GuruController::class, 'save_quiz']);
-        Route::get('/guru/room/{id}/quiz_delete/{quiz}', [GuruController::class, 'delete_quiz'])->name('delete.quiz');
-        Route::get('/guru/room/{id}/quiz_edit/{quiz}', [GuruController::class, 'edit_quiz'])->name('edit.quiz');
-        Route::post('/guru/room/{id}/quiz_update/{quiz}', [GuruController::class, 'update_quiz'])->name('update.quiz');
+        Route::get('/guru/room/{detail}/quiz_delete/{quizzes}', [GuruController::class, 'delete_quiz'])->name('delete.quiz');
+        Route::get('/guru/room/{detail}/quiz_edit/{quizzes}', [GuruController::class, 'edit_quiz'])->name('edit.quiz');
+        Route::post('/guru/room/{detail}/quiz_update/{quizzes}', [GuruController::class, 'update_quiz'])->name('update.quiz');
 
         // Route::resource('guru', GuruController::class);
     });

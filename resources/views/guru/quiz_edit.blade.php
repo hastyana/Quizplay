@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
     <link rel="icon" href="{{ asset ('img/logo.png') }}">
+    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
     <title>Dashboard Guru | Play Quiz</title>
 </head>
@@ -47,43 +48,46 @@
                             
                     @include('errors.message')
 
-                    <form class="py-5 font-roboto px-5 bg-purple-1F4B9D rounded-xl space-y-2" method="POST" action="{{ url('/guru/materi/materi_add') }}" onsubmit="return confirmSubmit()" enctype="multipart/form-data">
+                    <form class="py-5 font-roboto px-5 bg-purple-1F4B9D rounded-xl space-y-2" method="POST" action="{{ route('update.quiz', [$link, $edit]) }}" onsubmit="return confirmSubmit()" enctype="multipart/form-data">
                         
                         @csrf
                         
                         <h2 class="md:text-2xl text-lg font-sans font-semibold text-center text-white">
-                            Input Soal Quiz
+                            Edit Soal Quiz
                         </h2>
                         <div>
                             <label for="question" class="sr-only">Soal</label>
-                            <input id="question" name="question" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white" placeholder="Soal">
+                            <textarea id="question" name="question" type="text" required class="ckeditor relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white"> {{ old('quiz', $edit->question) }} </textarea>
                         </div>
                         <div>
                             <label for="a" class="sr-only">A</label>
-                            <input id="a" name="a" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white" placeholder="A">
+                            <input value="{{ old('quiz', $edit->a) }}" id="a" name="a" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
                         </div>
                         <div>
                             <label for="b" class="sr-only">B</label>
-                            <input id="b" name="b" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white" placeholder="B">
+                            <input value="{{ old('quiz', $edit->b) }}" id="b" name="b" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
                         </div>
                         <div>
                             <label for="c" class="sr-only">C</label>
-                            <input id="c" name="c" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white" placeholder="C">
+                            <input value="{{ old('quiz', $edit->c) }}" id="c" name="c" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
                         </div>
                         <div>
                             <label for="d" class="sr-only">D</label>
-                            <input id="d" name="d" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white" placeholder="D">
+                            <input value="{{ old('quiz', $edit->d) }}" id="d" name="d" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
                         </div>
                         <div>
+                            <p class="font-normal py-2 md:text-start text-white text-xs">
+                                *isi kunci jawaban dengan opsi, misal : a/b/c/d
+                            </p>
                             <label for="key" class="sr-only">Kunci Jawaban</label>
-                            <input id="key" name="key" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white" placeholder="Kunci Jawaban">
+                            <input value="{{ old('quiz', $edit->key) }}" id="key" name="key" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white" placeholder="Kunci Jawaban">
                         </div>
                         <div>
-                            <p class="font-normal py-2 md:text-start text-red-600">
+                            <p class="font-normal text-xs py-2 md:text-start text-red-600">
                                 *opsional tidak harus dengan gambar
                             </p>
                             <input class="block w-full text-sm text-gray-600 bg-white rounded-lg cursor-pointer focus:outline-none py-1 px-1" id="image" name="image" type="file">
-                            <p class="font-normal py-2 md:text-start text-red-600">
+                            <p class="font-normal text-xs py-2 md:text-start text-red-600">
                                 *upload dengan format .jpg, .jpeg, .png, .gif, dan .svg <br>
                                 *max file size 2MB
                             </p>
@@ -94,7 +98,7 @@
                     </form>
                 </div>
                 <div class="flex justify-end items-center">
-                    <a href="{{ url('/guru/room') }}" type="button" class="group relative flex w-auto justify-center rounded-md bg-orange-400 px-3 py-2 text-sm font-semibold text-white hover:bg-gray-400 shadow shadow-gray-400 duration-200">
+                    <a href="{{ url('/guru/room', $link->id) }}" type="button" class="group relative flex w-auto justify-center rounded-md bg-orange-400 px-3 py-2 text-sm font-semibold text-white hover:bg-gray-400 shadow shadow-gray-400 duration-200">
                         < <span class="px-2"> | </span> Back
                     </a>
                 </div>   
@@ -121,6 +125,10 @@
     dropdown.addEventListener('click', () => {
     dropmenu.classList.toggle('hidden');
     });
+</script>
+{{-- Textarea Editor --}}
+<script>
+    CKEDITOR.replace( 'editor' );
 </script>
 
 </html>

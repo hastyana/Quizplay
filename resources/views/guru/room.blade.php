@@ -94,10 +94,10 @@
                                         {{ $row->key }}
                                     </td>
                                     <td class="px-4 py-3 text-sm flex space-x-2">
-                                        <a href="/guru/room/{{ $detail->id }}/quiz_edit/{{$row->id}}" class="bg-green-500 px-2 py-2 rounded-lg hover:opacity-70" onclick="return confirm('Apakah anda yakin ingin mengubah data ?');">
+                                        <a href="{{ route('edit.quiz', [$detail, $row]) }}" class="bg-green-500 px-2 py-2 rounded-lg hover:opacity-70" onclick="return confirm('Apakah anda yakin ingin mengubah data ?');">
                                             <i class="fi fi-rr-file-edit"></i>
                                         </a>
-                                        <a href="/guru/room/{{ $detail->id }}/quiz_delete/{{$row->id}}" class="bg-red-500 px-2 py-2 rounded-lg hover:opacity-70" onclick="return confirm('Apakah anda yakin ingin menghapus data ?');">
+                                        <a href="{{ route('delete.quiz', [$detail, $row]) }}" class="bg-red-500 px-2 py-2 rounded-lg hover:opacity-70" onclick="return confirm('Apakah anda yakin ingin menghapus data ?');">
                                             <i class="fi fi-rr-trash"></i>
                                         </a>
                                     </td>
