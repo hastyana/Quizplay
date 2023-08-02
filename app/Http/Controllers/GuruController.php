@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Quiz;
+use App\Models\User;
 use App\Models\Answer;
 
 use Illuminate\Support\Facades\Storage;
@@ -64,10 +65,6 @@ class GuruController extends Controller
     public function save_quiz (Request $request, Room $id) {
         $this->validate($request, [
             'question' => 'required',
-            'a'=>'required',
-            'b'=>'required',
-            'c'=>'required',
-            'd'=>'required',
             'key'=>'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg,heic|max:2048',
         ]);
@@ -144,8 +141,9 @@ class GuruController extends Controller
             'username',
             Answer::raw('sum(score) as total')
         ]);
+        $quizzes = Quiz::where([['id_room', $room->id]])->get();
         // dd($stand);
 
-        return view('guru.standing', ['link' => $link, 'stand' => $stand]);
+        return view('guru.standing', ['link' => $link, 'stand' => $stand, 'quizzes' => $quizzes]);
     }
 }

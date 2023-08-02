@@ -38,71 +38,78 @@
 
     <section class="py-10 overflow-hidden">
         <div class="container mx-auto flex justify-center">
-            <div class="py-2 w-full px-5 space-y-5 bg-purple-1F4B9D rounded-xl">     
+            <div class="py-2 w-full px-5 space-y-5 rounded-xl">     
                 
-                <p class="text-xl text-center text-white">
-                    {{ $name->room }}
-                </p>
+                <div class="flex justify-center items-center">
+                    <div class="w-auto bg-color-F4F2DE py-1.5 px-2 rounded-lg shadow">
+                        <h2 class="md:text-2xl text-lg font-sans font-semibold text-center text-black">
+                            {{ $name->room }}
+                        </h2>
+                    </div>
+                </div>  
                 
+                <div class="py-2 w-full px-5 space-y-5 bg-color-F4F2DE rounded-xl">
+                    
                 <form class="font-roboto" method="POST" action="{{ url('/pelajar/room/'.$link->id.'/room_post') }}" onsubmit="return confirmSubmit()" enctype="multipart/form-data">    
 
-                @csrf
-                
-                @php $no=0; @endphp
-                @foreach ($quizzes as $row)
-                @php $no++; @endphp     
-                              
-                <input type="hidden" value="{{$row->id}}" name="id_quiz[]"> 
-                
-                    <div class="overflow-hidden flex flex-col rounded-xl py-4 space-y-1">
-                        <div class="font-sans text-white inline-flex space-x-1">
-                            <p class="text-md">
-                                {{ $no }}.
-                            </p>
-                            <p class="text-lg">
-                                {!! $row->question !!} 
-                            </p>
-                        </div>
-                        <img class="w-56 h-auto items-center justify-center" src="{{ asset ('quiz/'.$row->image) }}" alt="{{ $row->image }}">
-                        
-                        <div class="relative z-0 group">
-
-                            <div class="flex items-center space-x-2">
-                                <input value="a" {{ old('answer') == "A" ?? "checked" }} name="answer[{{ $row->id }}]" type="radio" id="answer" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
-                                <label for="jawaban1" class="w-full text-md font-sans text-white">
-                                    A. {{ $row->a }}
-                                </label>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <input value="b" {{ old('answer') == "B" ?? "checked" }} name="answer[{{ $row->id }}]" type="radio" id="answer" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
-                                <label for="jawaban2" class="w-full text-md font-sans text-white">
-                                    B. {{ $row->b }}
-                                </label>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <input value="c" {{ old('answer') == "C" ?? "checked" }} name="answer[{{ $row->id }}]" type="radio" id="answer" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
-                                <label for="jawaban3" class="w-full text-md font-sans text-white">
-                                    C. {{ $row->c }}
-                                </label>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <input value="d" {{ old('answer') == "D" ?? "checked" }} name="answer[{{ $row->id }}]" type="radio" id="answer" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
-                                <label for="jawaban4" class="w-full text-md font-sans text-white">
-                                    D. {{ $row->d }}
-                                </label>
-                            </div>
-                        </div>
-
-                        @endforeach
+                    @csrf
                     
-                    </div>
+                    @php $no=0; @endphp
+                    @foreach ($quizzes as $row)
+                    @php $no++; @endphp     
+                                  
+                    <input type="hidden" value="{{$row->id}}" name="id_quiz[]"> 
+                    
+                        <div class="overflow-hidden flex flex-col rounded-xl py-4 space-y-1">
+                            <div class="font-sans text-black inline-flex space-x-1">
+                                <p class="text-md">
+                                    {{ $no }}.
+                                </p>
+                                <p class="text-lg">
+                                    {!! $row->question !!} 
+                                </p>
+                            </div>
+                            <img class="w-56 h-auto items-center justify-center" src="{{ asset ('quiz/'.$row->image) }}" alt="{{ $row->image }}">
+                            
+                            <div class="relative z-0 group">
+    
+                                <div class="flex items-center space-x-2">
+                                    <input value="a" {{ old('answer') == "A" ?? "checked" }} name="answer[{{ $row->id }}]" type="radio" id="answer" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
+                                    <label for="jawaban1" class="w-full text-md font-sans text-black">
+                                        {{ $row->a }}
+                                    </label>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input value="b" {{ old('answer') == "B" ?? "checked" }} name="answer[{{ $row->id }}]" type="radio" id="answer" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
+                                    <label for="jawaban2" class="w-full text-md font-sans text-black">
+                                        {{ $row->b }}
+                                    </label>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input value="c" {{ old('answer') == "C" ?? "checked" }} name="answer[{{ $row->id }}]" type="radio" id="answer" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
+                                    <label for="jawaban3" class="w-full text-md font-sans text-black">
+                                        {{ $row->c }}
+                                    </label>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input value="d" {{ old('answer') == "D" ?? "checked" }} name="answer[{{ $row->id }}]" type="radio" id="answer" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
+                                    <label for="jawaban4" class="w-full text-md font-sans text-black">
+                                        {{ $row->d }}
+                                    </label>
+                                </div>
+                            </div>
+    
+                            @endforeach
+                        
+                        </div>
+    
+                        <button type="submit" class="group relative flex w-min justify-center rounded-md bg-green-400 px-3 py-2 text-base font-normal text-white hover:bg-white hover:text-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 shadow shadow-green-600 hover:shadow-white">
+                            Kirim
+                        </button>
+    
+                    </form>
 
-                    <button type="submit" class="group relative flex w-min justify-center rounded-md bg-green-400 px-3 py-2 text-base font-normal text-white hover:bg-white hover:text-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 shadow shadow-green-600 hover:shadow-white">
-                        Kirim
-                    </button>
-
-                </form>
-                
+                </div>                
             </div>        
         </div>
     </section>

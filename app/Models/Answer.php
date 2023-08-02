@@ -11,7 +11,7 @@ class Answer extends Model
 
     protected $table = 'answers';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'id_room', 'id_quiz', 'id_user', 'username', 'answer', 'score'];
+    protected $fillable = ['id', 'id_room', 'id_quiz', 'id_user', 'username', 'question', 'answer', 'score', 'desc'];
     protected $dates = ['created_at, update_at'];
 
     public function users(){

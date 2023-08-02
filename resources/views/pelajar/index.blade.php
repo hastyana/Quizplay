@@ -32,7 +32,7 @@
             <h2 class="font-sans font-semibold text-center text-black text-lg">
                 {{auth()->user()->username}}
             </h2>
-            <a href="{{ url('logout') }}" class="group relative flex w-auto justify-center rounded-full bg-orange-400 duration-200 hover:bg-gray-400 text-black font-semibold text-sm px-2 py-1">
+            <a href="{{ url('logout') }}" class="group relative flex w-auto justify-center rounded-full bg-black duration-200 hover:bg-gray-400 text-blue-2F308B font-semibold text-sm px-2 py-1">
                 Logout
             </a>
             @endauth
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="submit" class="group relative flex w-full justify-center rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white hover:text-black hover:bg-gray-300 duration-200 shadow shadow-orange-400 hover:shadow-gray-300">
+                        <button type="submit" class="group relative flex w-full justify-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-white hover:text-black hover:bg-gray-300 duration-200 shadow shadow-orange-400 hover:shadow-gray-300">
                             Get Room
                         </button>
                     </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Jul 03, 2023 at 11:16 AM
+-- Generation Time: Aug 02, 2023 at 04:28 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -33,8 +33,10 @@ CREATE TABLE `answers` (
   `id_quiz` bigint(20) UNSIGNED NOT NULL,
   `id_user` bigint(20) UNSIGNED NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `answer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `score` int(11) NOT NULL,
+  `desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -121,10 +123,10 @@ CREATE TABLE `quiz` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_room` bigint(20) UNSIGNED NOT NULL,
   `question` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `a` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `b` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `c` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `d` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `a` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `b` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `c` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `d` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -170,11 +172,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Guru 1', 'guru1', 'guru1@email.com', NULL, '$2a$12$V4ZaO4lfbI4ZjISCDqyJY.H7cY4YPjSD2Ub8YPrC9tMDBp4dZ.N4W', 'guru', NULL, '2023-06-26 06:13:49', '2023-06-26 06:13:49'),
-(2, 'Guru 2', 'guru2', 'guru2@email.com', NULL, '$2a$12$dKiZsd/P09rQy2Et9BoIQOHuiGO/O8GL6PuTY2wtbsyXch1.M4Wme', 'guru', NULL, '2023-06-26 06:13:49', '2023-06-26 06:13:49'),
-(3, 'Pelajar Satu', 'pelajar1', 'pelajar1@email.com', NULL, '$2y$10$F5gAniTUud00Ybuy7NCgB.Kyx1zpVT0YbO0Ikbi9s27s0ZLespQGK', 'pelajar', NULL, '2023-07-01 06:54:02', '2023-07-01 06:54:02'),
-(4, 'Pelajar Dua', 'pelajar2', 'pelajar2@email.com', NULL, '$2y$10$VnbJVLih.onCuhaAdgVRYOtU7Yp4USsaXNxdM6ciTL6sQhMNweq5S', 'pelajar', NULL, '2023-07-01 06:54:30', '2023-07-01 06:54:30'),
-(5, 'Pelajar Tiga', 'pelajar3', 'pelajar3@email.com', NULL, '$2y$10$vBBkQ4fMPjARMy9eJ13MSu2OoNPv1bAqq4gH3X3BpfZd.tjRAa50.', 'pelajar', NULL, '2023-07-01 06:55:15', '2023-07-01 06:55:15');
+(1, 'Guru 1', 'guru1', 'guru1@email.com', NULL, '$2a$12$XbqzGdgh3RtOAkaQ3dIQHuWO1WY7MzjDRfOyHdp1e8Jvn79RKie0y', 'guru', NULL, '2023-08-01 00:07:32', '2023-08-01 00:07:32'),
+(2, 'Guru 2', 'guru2', 'guru2@email.com', NULL, '$2a$12$iyp4lxgdQTOxPT0bjhFPbuYM42kIJgw1DhQotE1VPHp8lGPHBFIbW', 'guru', NULL, '2023-08-01 00:07:32', '2023-08-01 00:07:32');
 
 --
 -- Indexes for dumped tables
@@ -280,7 +279,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

@@ -15,7 +15,27 @@ class Quiz extends Model
     protected $dates = ['created_at, update_at'];
 
     public function answers() {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class, 'id_quiz');
+    }
+
+    public function getCorrectAnswerPercentage()
+    {
+        $correct = $this->answers()->where('score', 1)->count();
+        $total = $this->answers()->count();
+        return $total > 0 ? (($correct / $total) * 100) : 0;
+    }
+
+    public function getWrongAnswerPercentage()
+    {
+        $wrong = $this->answers()->where('score', 0)->count();
+        $total = $this->answers()->count();
+        return $total > 0 ? (($wrong / $total) * 100) : 0;
+    }
+
+    public function getUserPlays()
+    {
+        $total = $this->answers()->count();
+        return $total;
     }
 
     public function rooms() {

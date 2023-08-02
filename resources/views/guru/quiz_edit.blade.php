@@ -33,7 +33,7 @@
             <h2 class="font-sans font-semibold text-center text-black text-lg">
                 {{auth()->user()->username}}
             </h2>
-            <a href="{{ url('logout') }}" class="group relative flex w-auto justify-center rounded-full bg-orange-400 duration-200 hover:bg-gray-400 text-black font-semibold text-sm px-2 py-1">
+            <a href="{{ url('logout') }}" class="group relative flex w-auto justify-center rounded-full bg-black duration-200 hover:bg-gray-400 text-blue-2F308B font-semibold text-sm px-2 py-1">
                 Logout
             </a>
             @endauth
@@ -48,35 +48,47 @@
                             
                     @include('errors.message')
 
-                    <form class="py-5 font-roboto px-5 bg-purple-1F4B9D rounded-xl space-y-2" method="POST" action="{{ route('update.quiz', [$link, $edit]) }}" onsubmit="return confirmSubmit()" enctype="multipart/form-data">
+                    <form class="py-5 font-roboto px-5 bg-color-F4F2DE rounded-xl space-y-2" method="POST" action="{{ route('update.quiz', [$link, $edit]) }}" onsubmit="return confirmSubmit()" enctype="multipart/form-data">
                         
                         @csrf
                         
-                        <h2 class="md:text-2xl text-lg font-sans font-semibold text-center text-white">
+                        <h2 class="md:text-2xl text-lg font-sans font-semibold text-center text-black">
                             Edit Soal Quiz
                         </h2>
                         <div>
+                            <p class="font-normal py-2 md:text-start text-black">
+                                Soal
+                            </p>
                             <label for="question" class="sr-only">Soal</label>
                             <textarea id="question" name="question" type="text" required class="ckeditor relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white"> {{ old('quiz', $edit->question) }} </textarea>
                         </div>
+                        <p class="font-normal py-2 md:text-start text-black text-xs">
+                            *Cara Input Option Soal Pilihan Ganda : <br>
+                            A. Jawaban &nbsp;      C. Jawaban <br>
+                            B. Jawaban &nbsp;      D. Jawaban <br><br>
+                            *Cara Pengisian Soal True or False : <br>
+                            true <br>
+                            false <br>
+                            untuk input opsi C dan D tidak usah diisi 
+                        </p>
                         <div>
                             <label for="a" class="sr-only">A</label>
-                            <input value="{{ old('quiz', $edit->a) }}" id="a" name="a" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
+                            <input value="{{ old('quiz', $edit->a) }}" id="a" name="a" type="text" class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
                         </div>
                         <div>
                             <label for="b" class="sr-only">B</label>
-                            <input value="{{ old('quiz', $edit->b) }}" id="b" name="b" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
+                            <input value="{{ old('quiz', $edit->b) }}" id="b" name="b" type="text" class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
                         </div>
                         <div>
                             <label for="c" class="sr-only">C</label>
-                            <input value="{{ old('quiz', $edit->c) }}" id="c" name="c" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
+                            <input value="{{ old('quiz', $edit->c) }}" id="c" name="c" type="text" class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
                         </div>
                         <div>
                             <label for="d" class="sr-only">D</label>
-                            <input value="{{ old('quiz', $edit->d) }}" id="d" name="d" type="text" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
+                            <input value="{{ old('quiz', $edit->d) }}" id="d" name="d" type="text" class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white">
                         </div>
                         <div>
-                            <p class="font-normal py-2 md:text-start text-white text-xs">
+                            <p class="font-normal py-2 md:text-start text-black text-xs">
                                 *isi kunci jawaban dengan opsi, misal : a/b/c/d
                             </p>
                             <label for="key" class="sr-only">Kunci Jawaban</label>
@@ -92,7 +104,7 @@
                                 *max file size 2MB
                             </p>
                         </div>
-                        <button type="submit" class="group relative flex w-auto justify-center rounded-lg bg-white px-3 py-2 text-sm font-normal text-black hover:opacity-50 duration-200">
+                        <button type="submit" class="group relative flex w-auto justify-center rounded-lg bg-green-400 px-3 py-2 text-sm font-normal text-color-F4F2DE hover:opacity-50 duration-200">
                             Submit
                         </button>
                     </form>

@@ -53,13 +53,20 @@ class PelajarController extends Controller
             if($quiz->key == $answer) {
                 $score = 1;
             }
+            if($score == 1) {
+                $desc = 'benar';
+            } else {
+                $desc = 'salah';
+            }
             Answer::create([
             'id_quiz' => $quiz->id,
+            'question' => $quiz->question,
             'id_room' => $room->id,
             'id_user' => auth()->user()->id,
             'username' => auth()->user()->username,
             'answer' => $answer,
             'score' => $score,
+            'desc' => $desc,
             ]);
         }
 
@@ -68,7 +75,9 @@ class PelajarController extends Controller
 
     public function done($id) {
         $done = Room::where('id', $id)->firstOrFail();
-        return view('pelajar.done', ['done' => $done]);
+        $room = Room::findOrFail($id);
+        $table = Answer::where([['id_room', $room->id], ['id_user', auth()->user()->id]])->get();
+        return view('pelajar.done', ['done' => $done, 'table' => $table]);
     }
 
     public function stand($id) {

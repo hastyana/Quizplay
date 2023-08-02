@@ -32,7 +32,7 @@
             <h2 class="font-sans font-semibold text-center text-black text-lg">
                 {{auth()->user()->username}}
             </h2>
-            <a href="{{ url('logout') }}" class="group relative flex w-auto justify-center rounded-full bg-orange-400 duration-200 hover:bg-gray-400 text-black font-semibold text-sm px-2 py-1">
+            <a href="{{ url('logout') }}" class="group relative flex w-auto justify-center rounded-full bg-black duration-200 hover:bg-gray-400 text-blue-2F308B font-semibold text-sm px-2 py-1">
                 Logout
             </a>
             @endauth
@@ -47,11 +47,11 @@
                             
                     @include('errors.message')
 
-                    <form class="py-5 font-roboto px-5 bg-purple-1F4B9D rounded-xl space-y-2" method="POST" action="{{ url('/guru/room_add') }}" onsubmit="return confirmSubmit()" enctype="multipart/form-data">
+                    <form class="py-5 font-roboto px-5 bg-color-F4F2DE rounded-xl space-y-2" method="POST" action="{{ url('/guru/room_add') }}" onsubmit="return confirmSubmit()" enctype="multipart/form-data">
                         
                         @csrf
                         
-                        <h2 class="md:text-2xl text-lg font-sans font-semibold text-center text-white">
+                        <h2 class="md:text-2xl text-lg font-sans font-semibold text-center text-black">
                             Input Room
                         </h2>
                         <div>
@@ -62,7 +62,7 @@
                             <label for="code" class="sr-only">Room Code</label>
                             <input value="{{ old('code') }}" id="code" name="code" type="password" autocomplete="current-password" required class="relative block w-full rounded-lg border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-white" placeholder="Room Code">
                         </div>
-                        <button type="submit" class="group relative flex w-auto justify-center rounded-lg bg-white px-3 py-2 text-sm font-normal text-black hover:opacity-50 duration-200">
+                        <button type="submit" class="group relative flex w-auto justify-center rounded-lg bg-green-400 px-3 py-2 text-sm font-normal text-color-F4F2DE hover:opacity-50 duration-200">
                             Submit
                         </button>
                     </form>

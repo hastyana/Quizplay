@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_room');
             $table->text('question');
-            $table->string('a');
-            $table->string('b');
-            $table->string('c');
-            $table->string('d');
+            $table->string('a')->nullable();
+            $table->string('b')->nullable();
+            $table->string('c')->nullable();
+            $table->string('d')->nullable();
             $table->string('key');
             $table->string('image')->nullable();
             $table->timestamps();

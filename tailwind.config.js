@@ -80,6 +80,8 @@ module.exports = {
       colors: {
         'blue-2F308B': '#ceefff',
         'purple-1F4B9D': '#9d3cbf',
+        'color-F4F2DE': '#f4f2de',
+        'color-ECA869': '#eca869',
       }
     },
   },

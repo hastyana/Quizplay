@@ -17,8 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_quiz');
             $table->unsignedBigInteger('id_user');
             $table->string('username');
+            $table->string('question');
             $table->string('answer');
             $table->integer('score');
+            $table->string('desc');
             $table->timestamps();
 
             $table->foreign('id_room')->references('id')->on('rooms')->onDelete('cascade');

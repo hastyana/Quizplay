@@ -43,11 +43,8 @@
                     <h2 class="text-center text-xl font-sans font-bold tracking-widest text-black uppercase">
                         {{ $detail->room }}
                     </h2>
-                    <a href="{{ url('/pelajar/room/'.$detail->id.'/room_post') }}" class="px-7 py-2 text-2xl text-white group relative flex w-auto justify-center rounded-lg hover:opacity-50 bg-purple-1F4B9D">
+                    <a href="{{ url('/pelajar/room/'.$detail->id.'/room_post') }}" class="px-7 py-2 text-2xl text-white group relative flex w-auto justify-center rounded-lg hover:opacity-50 bg-green-400">
                         Play
-                    </a>
-                    <a href="{{ url('/pelajar/room/'.$detail->id.'/standing') }}" class="px-7 py-2 text-2xl text-white group relative flex w-auto justify-center rounded-lg hover:opacity-50 bg-purple-1F4B9D">
-                        Ranking
                     </a>
                 </div>
 
